@@ -47,7 +47,7 @@ const products = {
   'darkzadie': { name: 'Darkzadie', price: 30, videoUrl: 'https://files.fm/u/r6bedx78ty' },
   'real_incest_mom_and_son': { name: 'Real incest mom and son', price: 40, videoUrl: 'https://files.fm/u/gs2ngwyywb' },
   'desiree_garcia': { name: 'Desiree Garcia', price: 30, videoUrl: 'https://files.fm/u/3tegqj7vtx' },
-  'cp1': { name: 'Cp1', price: 45, videoUrl: 'https://files.fm/u/23jf3vcpxd' },
+  'cp': { name: 'Cp1', price: 45, videoUrl: 'https://files.fm/u/23jf3vcpxd' },
   'amelia': { name: 'Amelia teen', price: 35, videoUrl: 'https://files.fm/u/pfssvgaz38' },
   // adicione mais aqui...
 };
@@ -183,3 +183,4 @@ bot.on('message', (msg) => {
 // express listen
 
 app.listen(PORT, () => console.log(`🌍 App escutando na porta ${PORT}`));
+
