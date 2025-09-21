@@ -38,10 +38,17 @@ if (USE_WEBHOOK) {
 
 // ----------------- Catálogo -----------------
 const products = {
-  'lizzy_and_bro': { name: 'Lizzy And Bro', price: 25, videoUrl: 'https://streamable.com/COLE_O_LINK_AQUI' },
-  'savannah': { name: 'Savannah', price: 30, videoUrl: 'https://streamable.com/COLE_O_LINK_AQUI' },
-  'abbi': { name: 'Abbi', price: 22, videoUrl: 'https://files.fm/f/vg9sk8v6nc' },
-  'ivanka_and_bro': { name: 'Ivanka and Bro', price: 32, videoUrl: 'https://files.fm/f/vg9sk8v6nc' },
+  'lizzy_and_bro': { name: 'Lizzy And Bro', price: 40, videoUrl: 'https://files.fm/u/fgkpuqf6pm' },
+  'savannah': { name: 'Savannah', price: 30, videoUrl: 'https://files.fm/u/8mz72wxtmg' },
+  'abbi'abbi : { name: 'Abbi', price: 22, videoUrl: 'https://files.fm/f/vg9sk8v6nc' },
+  'ivanka_and_bro': { name: 'Ivanka and Bro', price: 32, videoUrl: 'https://files.fm/u/4cc5vnrupu' },
+  'mom_and_son': { name: 'Mom and Son', price: 35, videoUrl: 'https://files.fm/f/jyvd7thq36' },
+  'omegle_leaks': { name: 'Omegle Leaks', price: 45, videoUrl: 'https://files.fm/u/thmavn8r6j' },
+  'darkzadie': { name: 'Darkzadie', price: 30, videoUrl: 'https://files.fm/u/r6bedx78ty' },
+  'real_incest_mom_and_son': { name: 'Real incest mom and son', price: 40, videoUrl: 'https://files.fm/u/gs2ngwyywb' },
+  'desiree_garcia': { name: 'Desiree Garcia', price: 30, videoUrl: 'https://files.fm/u/3tegqj7vtx' },
+  'cp1': { name: 'Cp1', price: 45, videoUrl: 'https://files.fm/u/23jf3vcpxd' },
+  'amelia': { name: 'Amelia teen', price: 35, videoUrl: 'https://files.fm/u/pfssvgaz38' },
   // adicione mais aqui...
 };
 
@@ -76,7 +83,7 @@ function resetState(chatId) {
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   resetState(chatId);
-  bot.sendMessage(chatId, '👋 Bem-vindo! Escolha um produto abaixo:', {
+  bot.sendMessage(chatId, '👋 Welcome to the dark store! Choose a product below.:', {
     reply_markup: { inline_keyboard: buildProductKeyboard() }
   });
 });
@@ -100,8 +107,8 @@ bot.on('callback_query', async (query) => {
       reply_markup: {
         inline_keyboard: [
           [
-            { text: '✅ Sim', callback_data: 'interested_yes' },
-            { text: '❌ Não', callback_data: 'interested_no' }
+            { text: '✅ Yes', callback_data: 'interested_yes' },
+            { text: '❌ No', callback_data: 'interested_no' }
           ]
         ]
       }
@@ -113,7 +120,7 @@ bot.on('callback_query', async (query) => {
   if (st.step === 'awaiting_interest') {
     if (data === 'interested_yes') {
       st.step = 'awaiting_method';
-      await bot.sendMessage(chatId, '💰 Escolha método de pagamento:', {
+      await bot.sendMessage(chatId, '💰Choose payment method:', {
         reply_markup: {
           inline_keyboard: [
             [{ text: '💳 PayPal', callback_data: 'method_paypal' }],
@@ -125,7 +132,7 @@ bot.on('callback_query', async (query) => {
       });
     } else {
       resetState(chatId);
-      await bot.sendMessage(chatId, '👌 Tudo bem — escolha outro produto com /start.');
+      await bot.sendMessage(chatId, '👌Alright — choose another product with /start.');
     }
     return bot.answerCallbackQuery(query.id);
   }
@@ -136,12 +143,12 @@ bot.on('callback_query', async (query) => {
     st.method = method;
     st.step = 'awaiting_confirmation';
     const prod = products[st.selected];
-    let reply = `🧾 *Resumo do pedido*\n\n• Produto: *${prod.name}*\n• Preço: *${formatPrice(prod.price)}*\n• Método: *${method.toUpperCase()}*\n\n`;
+    let reply = `🧾 *Order summary*\n\n•Product: *${prod.name}*\n• Price: *${formatPrice(prod.price)}*\n• Método: *${method.toUpperCase()}*\n\n`;
 
     if (method === 'paypal') reply += '💳 PayPal\nEnvie para: `merakiii@outlook.pt`\nDepois digite *confirm*';
-    if (method === 'binance') reply += '🪙 Binance\n• BTC: `bc1q...`\n• USDT: `0x8B2E...`\nDepois digite *confirm*';
-    if (method === 'cashapp') reply += '💼 CashApp\n👉 [Contacte o suporte](https://t.me/vendospay)\nDepois digite *confirm*';
-    if (method === 'giftcard') reply += '🎁 Gift Card\n👉 [Contacte o suporte](https://t.me/vendospay)\nDepois digite *confirm*';
+    if (method === 'binance') reply += '🪙 Binance\n• BTC: `12avvin2PmX8LcEQVyKr6gFCyVrt5bW9WR`\n• USDT: `0xb5cfe96ed1a089f6e46fd66fdbd2d31c4af4568d`\nDepois digite *confirm*';
+    if (method === 'cashapp') reply += '💼 CashApp\n👉 [Contacte o suporte](https://t.me/SELLERBOSS010)\nDepois digite *confirm*';
+    if (method === 'giftcard') reply += '🎁 Gift Card\n👉 [Contacte o suporte](https://t.me/SELLERBOSS010)\nDepois digite *confirm*';
 
     await bot.sendMessage(chatId, reply, { parse_mode: 'Markdown', disable_web_page_preview: false });
     return bot.answerCallbackQuery(query.id);
@@ -168,10 +175,11 @@ bot.on('message', (msg) => {
 
   if (st.step === 'awaiting_confirmation' && text === 'confirm') {
     const prod = products[st.selected];
-    bot.sendMessage(chatId, `✅ Pagamento confirmado!\nVocê comprou *${prod.name}*.\nEnvie comprovante para 👉 https://t.me/vendospay`, { parse_mode: 'Markdown' });
+    bot.sendMessage(chatId, `✅ Payment confirmed!\nYou pay *${prod.name}*.\nSend proof of payment to👉 https://t.me/vendospay`, { parse_mode: 'Markdown' });
     resetState(chatId);
   }
 });
 
 // express listen
+
 app.listen(PORT, () => console.log(`🌍 App escutando na porta ${PORT}`));
